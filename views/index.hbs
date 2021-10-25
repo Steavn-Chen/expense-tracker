@@ -64,26 +64,26 @@
             <div class="col-10 aa">
               <li class="list-group-item justify-content-between">
                 <div class="row d-flex align-items-center">
-                  <div class="col-auto d-flex justify-content-center a">
-                    <i class="{{this.categoryIcon}} fa-5x"></i>
+                  <div class="col-auto d-flex justify-content-center " style="min-width: 180px;">
+                    <i class="{{this.categoryIcon}} fa-5x" ></i>
                   </div>
-                  <div class="col column text-center b">
+                  <div class="col column text-center " style="min-width: 180px;">
                     <h5>{{this.category}}: {{this.merchant}}</h5>
                     <h5>{{this.date}}</h5>
                   </div>
-                  <div class="col d-flex justify-content-center c">
+                  <div class="col text-center  " style="min-width: 180px;">
                     <h3>花費 : {{this.amount}}</h3>
                   </div>
-                  <div class="col d-flex justify-content-center d">
+                  <div class="col d-flex justify-content-center ml-3" >
                     <a
                       href="/records/edit"
-                      class="btn btn-success mx-auto"
+                      class="btn btn-success mx-2"
                     >修改</a>
-                    {{! <button type="submit" class="btn btn-success mx-auto">修改</button> }}
+                    
                     <form action="/records/delete" method="post">
                       <button
                         type="submit"
-                        class="btn btn-danger mx-auto"
+                        class="btn btn-danger mx-2"
                       >刪除</button>
                     </form>
                   </div>

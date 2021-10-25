@@ -2,7 +2,20 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Records = require('./record.json')
-const Categories = require('./category.json')
+const Category = require('./category.json')
+
+const mongoose = require('mongoose')
+mongoose.connect('mongodb://localhost/expense-trackers', { useUnifiedTopology: true, useNewUrlParser: true })
+
+const db = mongoose.connection
+
+db.on('error', () => {
+  console.log('mongodb connected error')
+})
+
+db.once('open', () => {
+  console.log('mongodb is connected')
+} )
 
 const app = express()
 const port = 3000
