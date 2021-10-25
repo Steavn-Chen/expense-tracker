@@ -1,48 +1,29 @@
 body {
   min-width: 380px;
+  background-color: rgb(245, 252, 238);
 }
 
-/* .container {
-  border: 1px solid yellow;
-} */
-
-
-/* .row {
-  border: 1px solid red;
+.fa-shuttle-van {
+  color: rgb(129, 77, 250);
 }
 
-.filter{
-  border:  5px solid blue;
+.fa-home {
+  color: rgb(0, 179, 250);
 }
 
-.filterCategory {
-
-  border: 1px solid brown;
+.fa-utensils {
+  color: rgb(50, 243, 32);
 }
 
-.roww {
-  border:  15px solid blue;
-}
-.totalAmount {
-  
-  border: 10px solid black;
+.fa-grin-beam {
+  color: rgb(236, 253, 0);
 }
 
-.aa {
-  border: 5px solid rgb(225, 0, 255);
+.fa-pen {
+  color: rgb(51, 3, 3);
 }
-.a {
-  border: 1px solid red;
+
+.newPage {
+  box-shadow: 3px 3px 10px rgb(7, 6, 6,0.7);
+  border-radius: 30px;
 }
-.b {
-  border: 1px solid blue;
-}
-.c {
-  border: 1px solid brown;
-}
-.d {
-  border: 1px solid green;
-}
-.b h3 {
-  border:rgb(145, 204, 35) 1px solid;
-} */

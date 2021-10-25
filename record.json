@@ -1,0 +1,123 @@
+ [
+  {
+  "name": "捷運",
+  "date": "2021-03-30",
+  "category": "交通出行",
+  "amount": "100",
+  "categoryIcon": "fas fa-shuttle-van",
+  "merchant": "台北捷運"
+  }, 
+  {
+  "name": "租金",
+  "date": "2021/03/20",
+  "category": "家居物業",
+  "amount": "9000",
+  "categoryIcon": "fas fa-home",
+  "merchant": "房東"
+  }, 
+  {
+  "name": "早餐",
+  "date": "2021/03/25",
+  "category": "餐飲食品",
+  "amount": "180",
+  "categoryIcon": "fas fa-utensils",
+  "merchant":"晨間廚房"
+  }, 
+  {
+  "name": "看電影",
+  "date": "2021/03/21",
+  "category": "休閒娛樂",
+  "amount": "260",
+  "categoryIcon": "fas fa-grin-beam",
+  "merchant": "威秀影城"
+  }, 
+  {
+  "name": "牙科",
+  "date": "2021/03/05",
+  "category": "其他",
+  "amount": "150",
+  "categoryIcon": "fas fa-pen",
+  "merchant": "高雄醫學院"
+  },
+  {
+  "name": "高鐵",
+  "date": "2021-05-30",
+  "category": "交通出行",
+  "amount": "1500",
+  "categoryIcon": "fas fa-shuttle-van",
+  "merchant": "台灣高鐵"
+  }, 
+  {
+  "name": "住宿",
+  "date": "2021/05/29",
+  "category": "家居物業",
+  "amount": "3000",
+  "categoryIcon": "fas fa-home",
+  "merchant": "老爺旅館"
+  }, 
+  {
+  "name": "午餐",
+  "date": "2021/6/01",
+  "category": "餐飲食品",
+  "amount": "250",
+  "categoryIcon": "fas fa-utensils",
+  "merchant":"定食8"
+  }, 
+  {
+  "name": "賽車",
+  "date": "2021/06/02",
+  "category": "休閒娛樂",
+  "amount": "500",
+  "categoryIcon": "fas fa-grin-beam",
+  "merchant": "大魯閣草衙道"
+  }, 
+  {
+  "name": "修車",
+  "date": "2021/06/04",
+  "category": "其他",
+  "amount": "2500",
+  "categoryIcon": "fas fa-pen",
+  "merchant": "高雄光陽維修站"
+  },
+  {
+  "name": "公車",
+  "date": "2021-05-30",
+  "category": "交通出行",
+  "amount": "25",
+  "categoryIcon": "fas fa-shuttle-van",
+  "merchant": "屏東客運"
+  }, 
+  {
+  "name": "住宿",
+  "date": "2021/05/12",
+  "category": "家居物業",
+  "amount": "500",
+  "categoryIcon": "fas fa-home",
+  "merchant": "老八表年旅店"
+  }, 
+  {
+  "name": "早餐",
+  "date": "2021/05/12",
+  "category": "餐飲食品",
+  "amount": "95",
+  "categoryIcon": "fas fa-utensils",
+  "merchant":"美而美"
+  }, 
+  {
+  "name": "打撞球",
+  "date": "2021/05/21",
+  "category": "休閒娛樂",
+  "amount": "280",
+  "categoryIcon": "fas fa-grin-beam",
+  "merchant": "夢時代"
+  }, 
+  {
+  "name": "買吉他",
+  "date": "2021/05/05",
+  "category": "其他",
+  "amount": "3500",
+  "categoryIcon": "fas fa-pen",
+  "merchant": "大眾樂器行"
+  }
+ ]
+

@@ -1,19 +1,19 @@
 <div class="container mt-5">
-  {{!-- <div class="row"> --}}
-    {{!-- <div class="filter d-flex justify-content-center align-items-center"> --}}
-      <div class="filter d-flex justify-content-center">
-        <form action="/filter" method="post">
-          <div class="filterCategory mt-3 ">
-            <select class="custom-select custom-select-lg btn-secondary mb-3">
-              <option selected>全部類別</option>
-              <option value="1">家居物業</option>
-              <option value="2">交通出行</option>
-              <option value="3">休閒娛樂</option>
-              <option value="3">餐飲食品</option>
-              <option value="3">其他</option>
-            </select>
-          </div>
-          {{!-- <div class="form-group d-flex align-items-center mt-3">
+  {{! <div class="row"> }}
+  {{! <div class="filter d-flex justify-content-center align-items-center"> }}
+  <div class="filter d-flex justify-content-center">
+    <form action="/filter" method="post">
+      <div class="filterCategory mt-3">
+        <select class="custom-select custom-select-lg btn-secondary mb-3">
+          <option selected>全部類別</option>
+          <option value="1">家居物業</option>
+          <option value="2">交通出行</option>
+          <option value="3">休閒娛樂</option>
+          <option value="3">餐飲食品</option>
+          <option value="3">其他</option>
+        </select>
+      </div>
+      {{! <div class="form-group d-flex align-items-center mt-3">
             <select class="custom-select btn-secondary">
               <option selected="">全部類別</option>
               <option value="1">家居物業</option>
@@ -22,9 +22,9 @@
               <option value="3">餐飲食品</option>
               <option value="3">其他</option>
             </select>
-          </div> --}}
+          </div> }}
 
-          {{!-- <div class="filteYEAR mt-3 ">
+      {{! <div class="filteYEAR mt-3 ">
             <select class="custom-select custom-select-lg mb-3">
               <option selected>Open</option>
               <option value="1">One</option>
@@ -39,213 +39,68 @@
               <option value="2">Two</option>
               <option value="3">Three</option>
             </select>
-          </div> --}}
-        </form>
-      </div>
+          </div> }}
+    </form>
+  </div>
 
-      <div class="row rol-12 mt-3 mx-auto justify-content-center align-items-center ">
-        <div class="mx-2" style="font-size:25px;">支出總金額 : </div>
-        <div style="font-size:55px; color:rgb(253, 135, 38)">121220012元</div>
-      </div>
+  <div
+    class="row rol-12 mt-3 mx-auto justify-content-center align-items-center bg-dark"
+  >
+    <div
+      class="mx-2"
+      style="font-size:25px; color:rgb(243, 232, 223)"
+    >支出總金額 : </div>
+    <div style="font-size:55px; color:rgb(253, 135, 38)">121220012元</div>
+  </div>
 
-      <div style="height:550px;width:auto;overflow:auto;background:#EEEEEE;" class="mt-3">
-        <div class="listMenu">
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
+  <div
+    style="height:550px;width:auto;overflow:auto;background:#EEEEEE;"
+    class="mt-3"
+  >
+    <div class="listMenu mt-3">
+      <ul class="list-group">
+        {{#each Records}}
+          <div class="row col-12 d-flex justify-content-center">
+            <div class="col-10 aa">
+              <li class="list-group-item justify-content-between">
+                <div class="row d-flex align-items-center">
+                  <div class="col-auto d-flex justify-content-center a">
+                    <i class="{{this.categoryIcon}} fa-5x"></i>
                   </div>
-                </li>
-              </div>
+                  <div class="col column text-center b">
+                    <h5>{{this.category}}: {{this.merchant}}</h5>
+                    <h5>{{this.date}}</h5>
+                  </div>
+                  <div class="col d-flex justify-content-center c">
+                    <h3>花費 : {{this.amount}}</h3>
+                  </div>
+                  <div class="col d-flex justify-content-center d">
+                    <a
+                      href="/records/edit"
+                      class="btn btn-success mx-auto"
+                    >修改</a>
+                    {{! <button type="submit" class="btn btn-success mx-auto">修改</button> }}
+                    <form action="/records/delete" method="post">
+                      <button
+                        type="submit"
+                        class="btn btn-danger mx-auto"
+                      >刪除</button>
+                    </form>
+                  </div>
+                </div>
+              </li>
             </div>
-          </ul>
+          </div>
+        {{/each}}
+      </ul>
 
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-
-
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-          <ul class="list-group">
-            <div class="row col-12 d-flex justify-content-center">
-              <div class="col-10 aa  ">
-                <li class="list-group-item justify-content-between ">
-                  <div class="row d-flex align-items-center ">
-                    <div class="col-auto d-flex justify-content-center a">
-                      <i class="fas fa-utensils fa-5x"></i>
-                    </div>
-                    <div class="col column text-center b">
-                      <h5>捷運</h5>
-                      <h5>台北捷運1 </h5>
-                    </div>
-                    <div class="col d-flex justify-content-center   c">
-                      <h3>花費 : 10000000</h3>
-                    </div>
-                    <div class="col d-flex justify-content-center  d">
-                      <a href="/records/edit" class="btn btn-success mx-auto">修改</a>
-                      {{!-- <button type="submit" class="btn btn-success mx-auto">修改</button> --}}
-                      <form action="/records/delete" method="post">
-                        <button type="submit" class="btn btn-danger mx-auto">刪除</button>
-                      </form>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </div>
-          </ul>
-
-        </div>
-      </div>
-      <div class="newBtn d-flex justify-content-center">
-        <a href="/records/new" class="btn btn-primary mt-4" style="width: 100px;">新增支出</a>
-      </div>
     </div>
+  </div>
+  <div class="newBtn d-flex justify-content-center">
+    <a
+      href="/records/new"
+      class="btn btn-primary mt-4"
+      style="width: 200px;"
+    >新增支出</a>
+  </div>
+</div>

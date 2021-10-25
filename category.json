@@ -1,0 +1,27 @@
+[
+   {
+  "categoryName": "transportation",  
+  "category": "交通出行",
+  "categoryIcon": "fas fa-shuttle-van"
+  }, 
+  {
+  "categoryName": "Accommodation",   
+  "category": "家居物業",
+  "categoryIcon": "fas fa-home"
+  }, 
+  {
+  "categoryName":"dining",   
+  "category": "餐飲食品",
+  "categoryIcon": "fas fa-utensils"
+  }, 
+  {
+  "categoryName": "leisure",
+  "category": "休閒娛樂",
+  "categoryIcon": "fas fa-grin-beam"
+  }, 
+  {
+  "categoryName": "other",  
+  "category": "其他",
+  "categoryIcon": "fas fa-pen"
+  }
+]

@@ -1,0 +1,64 @@
+<div class="container mt-5">
+  <form action="/records/new" method="POST">
+    <div class="col-md-10 mx-auto newPage p-3 bg-light">
+      <div class="form-group row mt-5">
+        <label
+          class="col-3 col-form-label text-nowrap d-flex justify-content-end p-1"
+        >必填欄位 *</label>
+        <div class="col-6 d-flex justify-content-center text-nowrap">
+          <div class="newTitle">
+            <h4>請輸入你的支出</h4>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label
+          for="name"
+          class="col-3 col-form-label d-flex justify-content-end"
+        >名稱 * :</label>
+        <div class="col-7">
+          <input type="text" class="form-control" id="name" name="name" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label
+          for="date"
+          class="col-3 col-form-label d-flex justify-content-end"
+        >日期 * :</label>
+        <div class="col-7">
+          <input type="date" class="form-control" id="date" name="date" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label
+          for="category"
+          class="col-3 col-form-label d-flex justify-content-end"
+        >類別 * :</label>
+        <div class="col-7">
+          <select id="category" class="form-control">
+            <option selected>全部類別</option>
+            <option value="1">家居物業</option>
+            <option value="2">交通出行</option>
+            <option value="3">休閒娛樂</option>
+            <option value="3">餐飲食品</option>
+            <option value="3">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label
+          for="amount"
+          class="col-3 col-form-label d-flex justify-content-end"
+        >金額 * :</label>
+        <div class="col-7">
+          <input type="number" class="form-control" id="amount" name="amount" />
+        </div>
+      </div>
+      <div class="form-inline newBtn d-flex justify-content-center mt-4">
+        <button type="submit" class="btn btn-primary btn-lg mr-3">確認</button>
+        <button type="reset" class="btn btn-danger btn-lg ml-3">重設</button>
+      </div>
+    </div>
+  </form>
+
+</div>
