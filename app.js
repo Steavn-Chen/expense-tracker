@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
-const { getCategoryIcon } = require('./tools/dataTool.js')
+const { getCategoryIcon, getTotalAmount } = require('./tools/dataTool.js')
 // const Records = require('./record.json')
 // const Category = require('./category.json')
 
@@ -35,7 +35,10 @@ app.get('/', (req, res) => {
     .then(records => {
       Category.find()
         .lean()
-        .then(categories => res.render('index', { records, categories }))
+        .then(categories => {
+          const totalAmount = getTotalAmount(records)
+          res.render('index', { records, categories, totalAmount })
+        })
         .catch(err => console.log(err))
     }
     )
@@ -66,12 +69,35 @@ app.post('/records/new', (req, res) => {
     })
 })
 
-app.get('/records/edit', (req, res) => {
-  res.render('edit')
+app.get('/records/:record_id/edit', (req, res) => {
+  const _id = req.params.record_id
+  Category.find()
+    .lean()
+    .then(categories =>    
+      Record.findById(_id)
+       .lean()
+       .then(record => { 
+        res.render('edit', { record, categories})})
+        .catch(err => console.log(err))
+        )
 })
 
-app.post('/records/edit', (req, res) => {
-  res.render('edit')
+app.post('/records/:record_id/edit', (req, res) => {
+  const _id = req.params.record_id
+  const { name, date, category, amount, merchant } = req.body
+  const body = req.body
+  Category.find()
+    .lean()
+    .then(categories => {
+      Record.findById(_id)
+      .lean()
+      .then(record => {   
+        const icon = { categoryIcon: getCategoryIcon(categories, category) }
+        Object.assign(record, body, icon)
+        res.render('edit', { record, categories })
+      })
+      .catch(err => console.log(err))
+    })
 })
 
 app.listen(port, () => {
