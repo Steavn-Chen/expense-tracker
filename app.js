@@ -4,8 +4,6 @@ const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
 const { getCategoryIcon, getTotalAmount } = require('./tools/dataTool.js')
-// const Records = require('./record.json')
-// const Category = require('./category.json')
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense-trackers', { useUnifiedTopology: true, useNewUrlParser: true })
@@ -30,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  Record.find()
+  return Record.find()
     .lean()
     .then(records => {
       Category.find()
@@ -45,7 +43,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/records/new', (req, res) => {
-  Category.find()
+  return Category.find()
     .lean()
     .then(categories => res.render('new', { categories }))
     .catch(err => console.log(err))
@@ -53,9 +51,10 @@ app.get('/records/new', (req, res) => {
 
 app.post('/records/new', (req, res) => {
   const { name, date, category, amount, merchant } = req.body
-  Category.find()
+  return Category.find()
     .lean()
     .then(categories => { 
+      const categoryIcon = getCategoryIcon(categories, category);
       return Record.create({
         name,
         date,
@@ -64,14 +63,14 @@ app.post('/records/new', (req, res) => {
         merchant,
         categoryIcon: getCategoryIcon(categories, category)
       })
-        .then(() => res.redirect('/'))
-        .catch(err => console.log(err))
+        .then(() => res.redirect("/"))
+        .catch((err) => console.log(err));
     })
 })
 
 app.get('/records/:record_id/edit', (req, res) => {
   const _id = req.params.record_id
-  Category.find()
+  return Category.find()
     .lean()
     .then(categories =>    
       Record.findById(_id)
@@ -83,21 +82,30 @@ app.get('/records/:record_id/edit', (req, res) => {
 })
 
 app.post('/records/:record_id/edit', (req, res) => {
-  const _id = req.params.record_id
-  const { name, date, category, amount, merchant } = req.body
-  const body = req.body
-  Category.find()
+  const _id = req.params.record_id;
+  const category = req.body.category;
+  const body = req.body;
+  return Category.find()
     .lean()
     .then(categories => {
       Record.findById(_id)
-      .lean()
       .then(record => {   
         const icon = { categoryIcon: getCategoryIcon(categories, category) }
-        Object.assign(record, body, icon)
-        res.render('edit', { record, categories })
+        return Object.assign(record, body, icon).save()
       })
+      .then(() => res.redirect('/'))
       .catch(err => console.log(err))
     })
+})
+
+app.post('/records/:record_id/delete', (req, res) => {
+  const _id = req.params.record_id
+  Record.findById(_id)
+  .then(record => {
+    return record.remove();
+  })
+  .then(() => res.redirect('/'))
+  .catch(err => console.log(err))
 })
 
 app.listen(port, () => {
