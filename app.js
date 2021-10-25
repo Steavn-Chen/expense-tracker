@@ -25,6 +25,14 @@ app.post('/records/new', (req, res) => {
   res.render('new')
 })
 
+app.get('/records/edit', (req, res) => {
+  res.render('edit')
+})
+
+app.post('/records/edit', (req, res) => {
+  res.render('edit')
+})
+
 app.listen(port, () => {
   console.log(`Expense-Tracker web on http://localhost:${port}`)
 })
