@@ -6,11 +6,9 @@
       <div class="filterCategory mt-3">
         <select class="custom-select custom-select-lg btn-secondary mb-3">
           <option selected>全部類別</option>
-          <option value="1">家居物業</option>
-          <option value="2">交通出行</option>
-          <option value="3">休閒娛樂</option>
-          <option value="3">餐飲食品</option>
-          <option value="3">其他</option>
+          {{#each categories}}
+          <option value="{{ this.categoryName }}">{{ this.category }}</option>
+          {{/each}}
         </select>
       </div>
       {{! <div class="form-group d-flex align-items-center mt-3">
@@ -59,13 +57,13 @@
   >
     <div class="listMenu mt-3">
       <ul class="list-group">
-        {{#each Records}}
+        {{#each records}}
           <div class="row col-12 d-flex justify-content-center">
             <div class="col-10 aa">
               <li class="list-group-item justify-content-between">
                 <div class="row d-flex align-items-center">
                   <div class="col-auto d-flex justify-content-center " style="min-width: 180px;">
-                    <i class="{{this.categoryIcon}} fa-5x" ></i>
+                     <i class="{{ categoryIcon }}  fa-5x" ></i>
                   </div>
                   <div class="col column text-center " style="min-width: 180px;">
                     <h5>{{this.category}}: {{this.merchant}}</h5>

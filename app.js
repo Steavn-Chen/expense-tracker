@@ -1,8 +1,10 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const Records = require('./record.json')
-const Category = require('./category.json')
+const Records = require('./models/record')
+const Category = require('./models/category')
+// const Records = require('./record.json')
+// const Category = require('./category.json')
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense-trackers', { useUnifiedTopology: true, useNewUrlParser: true })
@@ -27,8 +29,23 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-  res.render('index', { Records } )
-})
+  Records.find()
+  .lean()
+  .then(records => {
+    Category.find()
+    .lean()
+    .then(categories => res.render('index', { records, categories }))
+    .catch(err => console.log(err))
+  } 
+)})
+
+// app.get('/', (req, res) => {
+//   Records.find()
+//   .lean()
+//   .then(records => res.render('index', { records } )
+// )})
+  // res.render('index', { Records } )
+// })
 
 app.get('/records/new', (req, res) => {
   res.render('new')
