@@ -9,11 +9,10 @@ const categorySchema = new Schema({
     type: String,
     required: true
   },
-  categoryName: {
+  categoryIcon: {
     type: String,
     categoryIcon: true
   }
-
 })
 
 module.exports = mongoose.model('Category', categorySchema)

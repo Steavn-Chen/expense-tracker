@@ -1,9 +1,9 @@
 [
-  {
-  "categoryName": "transportation",  
-  "category": "交通出行",
-  "categoryIcon": "fas fa-shuttle-van"
-  }, 
+   {
+   "categoryName": "transportation",  
+   "category": "交通出行",
+   "categoryIcon": "fas fa-shuttle-van"
+    }, 
   {
   "categoryName": "Accommodation",   
   "category": "家居物業",

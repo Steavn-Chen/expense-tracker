@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Record = require('../record')
 const Category = require('../category')
-const recordData = require('../../record.json')
+
 const categoryData = require('../../category.json')
 
 mongoose.connect('mongodb://localhost/expense-trackers', { useUnifiedTopology: true, useNewUrlParser: true })
@@ -14,9 +14,9 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb is connected')
-  recordData.forEach(record => Record.create(record))
-  Category.insertMany(categoryData)
-  
-  console.log('recordData is done')
+  for (let i = 0; i < categoryData.length; i++) {
+    Category.create(categoryData[i])
+  }
+  console.log('done')
   // process.exit()
 })
