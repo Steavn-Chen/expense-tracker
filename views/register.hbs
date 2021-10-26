@@ -5,19 +5,19 @@
      <form action="/users/register" method="POST">
        <div class="form-group">
          <label for="name" style="font-size: 25px;"><i class="far fa-user"></i>  名稱: </label>
-         <input type="text" name="name" id="name" placeholder="請輸入你的名稱" class="form-control">
+         <input type="text" name="name" id="name" placeholder="請輸入你的名稱" class="form-control" value="{{ name }}">
        </div>
        <div class="form-group">
          <label for="email" style="font-size: 25px;"><i class="far fa-envelope "></i>  電子信箱 : </label>
-         <input type="email" name="email" id="email" placeholder="請輸入你的信箱地址" class="form-control">
+         <input type="email" name="email" id="email" placeholder="請輸入你的信箱地址" class="form-control" value="{{ email }}">
        </div>
        <div class="form-group">
          <label for="password" style="font-size: 25px;"><i class="fas fa-key"></i>  密碼 :</label>
-         <input type="password" name="password" id="password" placeholder="請輸入你的密碼" class="form-control">
+         <input type="password" name="password" id="password" placeholder="請輸入你的密碼" class="form-control" value="{{ password }}">
        </div>
        <div class="form-group">
          <label for="confirmPassword" style="font-size: 25px;"><i class="fas fa-key"></i>  確認密碼 :</label>
-         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="請輸入你的確認密碼" class="form-control">
+         <input type="password" name="confirmPassword" id="confirmPassword" placeholder="請輸入你的確認密碼" class="form-control" value="{{ confirmPassword }}">
        </div>
        <div class="form-inline d-flex justify-content-center mt-4">
        <button type="submit" class="btn btn-primary " id="registerSubmitBtn">註冊</button>
