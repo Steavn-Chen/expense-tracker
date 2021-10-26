@@ -3,7 +3,12 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
-const { getCategoryIcon, getTotalAmount } = require('./tools/dataTool.js')
+// const hbsHelpers = require('handlebars-helpers')
+const {
+  getCategoryIcon,
+  getTotalAmount,
+  getFilterRecords,
+} = require("./tools/dataTool.js");
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/expense-trackers', { useUnifiedTopology: true, useNewUrlParser: true })
@@ -19,13 +24,47 @@ db.once('open', () => {
 })
 
 const app = express()
-const port = 3000
+const port = 3000 
+  app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: require('./tools/hbs-helpers') })
+  );
+// app.engine('hbs', exphbs({ defaultLayout: "main", extname: "hbs", helpers: hbsHelpers() }));
+// app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: {
+//  ifEq: function(a, b, options) {
+//     if (a === b) { 
+//       return options.fn(this)
+//     } else {
+//       return options.inverse(this)
+//     }
+//   }}
+// }))
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
+
+
+
+app.get('/filter', (req, res) => {
+  const options = req.query;
+  return Category.find()
+  .lean()
+  .then(categories => { 
+    Record.find()
+      .lean()
+      .then((records) => {
+        const filterResults = getFilterRecords(records, options);
+        const totalAmount = getTotalAmount(filterResults);
+        res.render('index', {
+          options,
+          categories,
+          records: filterResults,
+          totalAmount,
+        });
+      })
+      .catch((error) => console.log(error));
+      })
+});
 
 app.get('/', (req, res) => {
   return Record.find()
@@ -54,7 +93,6 @@ app.post('/records/new', (req, res) => {
   return Category.find()
     .lean()
     .then(categories => { 
-      const categoryIcon = getCategoryIcon(categories, category);
       return Record.create({
         name,
         date,
@@ -76,7 +114,7 @@ app.get('/records/:record_id/edit', (req, res) => {
       Record.findById(_id)
        .lean()
        .then(record => { 
-        res.render('edit', { record, categories})})
+        res.render('edit', { record, categories })})
         .catch(err => console.log(err))
         )
 })
@@ -92,7 +130,7 @@ app.post('/records/:record_id/edit', (req, res) => {
       .then(record => {   
         const icon = { categoryIcon: getCategoryIcon(categories, category) }
         return Object.assign(record, body, icon).save()
-      })
+      }) 
       .then(() => res.redirect('/'))
       .catch(err => console.log(err))
     })

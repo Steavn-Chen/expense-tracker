@@ -10,4 +10,12 @@ function getTotalAmount(records) {
   return total
 }
 
-module.exports = { getCategoryIcon, getTotalAmount }
+function getFilterRecords(records, options) {
+  let filterResult = records.filter(
+    (record) => record.category === options.filterCategory
+  )
+  if (!filterResult.length) filterResult = records;
+    return filterResult;
+}
+
+module.exports = { getCategoryIcon, getTotalAmount, getFilterRecords };

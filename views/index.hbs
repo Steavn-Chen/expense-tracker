@@ -2,12 +2,12 @@
   {{! <div class="row"> }}
   {{! <div class="filter d-flex justify-content-center align-items-center"> }}
   <div class="filter d-flex justify-content-center">
-    <form action="/filter" method="post">
+    <form action="/filter" method="GET">
       <div class="filterCategory mt-3">
-        <select class="custom-select custom-select-lg btn-secondary mb-3">
+        <select class="custom-select custom-select-lg btn-secondary mb-3" oninput="submit()" name='filterCategory'>
           <option selected>全部類別</option>
           {{#each categories}}
-            <option value="{{this.categoryName}}">{{this.category}}</option>
+            <option value="{{this.category}}" {{#ifEq this.category ../options.filterCategory}} selected {{/ifEq}}>{{this.category}}</option>
           {{/each}}
         </select>
       </div>
