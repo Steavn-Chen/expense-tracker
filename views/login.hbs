@@ -1,3 +1,21 @@
 <div class="container mt-5 loginPage">
-  
+  <div class="col-md-6 m-auto">
+   <div class="card card-body login-card">
+     <h1 class="text-center mt-3" >登入</h1>
+     <form action="/users/login">
+       <div class="form-group">
+         <label for="email" style="font-size: 25px;"><i class="far fa-envelope "></i>  Email : </label>
+         <input type="email" name="email" id="email" placeholder="請輸入你的信箱地址" class="form-control">
+       </div>
+       <div class="form-group">
+         <label for="password" style="font-size: 25px;"><i class="fas fa-key"></i>  Password :</label>
+         <input type="password" name="password" id="password" placeholder="請輸入你的密碼" class="form-control">
+       </div>
+       <div class="form-inline d-flex justify-content-center mt-4">
+       <button type="submit" class="btn btn-primary " id="loginSubmitBtn">登入</button>
+       </div>
+       <p class="lead mt-4">沒有帳號嗎 ?<a href="/users/register">  註冊</a></p>
+     </form>
+   </div>
+  </div>
 </div>

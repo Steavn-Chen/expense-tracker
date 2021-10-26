@@ -29,5 +29,41 @@ body {
 }
 
 .loginPage {
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.login-card {
+  border-radius: 5px;
+  box-shadow: 5px 5px 20px rgb(9, 59, 105);
+}
+
+.fa-envelope {
+  color:rgb(8, 177, 22);
+}
+
+.fa-key {
+  color: rgb(255, 196, 0);
+}
+
+#loginSubmitBtn {
+
+  background-color:#9a9a9a;
+  padding:10px;
+  position:relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size:25px;
+  text-decoration:none;
+  color:#fff;
+  background-image: linear-gradient(bottom, rgb(100,170,30) 0%, rgb(129,212,51) 100%);
+  box-shadow: inset 0px 1px 0px #c0c0c0, 0px 6px 0px #9a9a9a;
+  border-radius: 30px;
+}
+
+#loginSubmitBtn:active {
+  top:7px;
+  /* background-image: linear-gradient(bottom, rgb(100,170,30) 100%, rgb(129,212,51) 0%); */
+  box-shadow: inset 0px 1px 0px #c0c0c0, inset 0px -1px 0px #9a9a9a;
+  color: rgba(23, 73, 180, 0.733);
+  text-shadow: 0px 1px 1px rgba(255,255,255,0.3);
+  background: #c0c0c0;
 }
