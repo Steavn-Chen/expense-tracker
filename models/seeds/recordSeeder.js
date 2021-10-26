@@ -1,14 +1,18 @@
 const db = require('../../config/mongoose')
 const Record = require('../record')
 const Category = require('../category')
-const recordData = require('../../record.json')
-const categoryData = require('../../category.json')
+const recordData = require('./record.json')
+const categoryData = require('./category.json')
 
 db.once('open', () => {
-  console.log('mongodb is connected')
-  recordData.forEach(record => Record.create(record))
-  Category.insertMany(categoryData)
-  
-  console.log('recordData is done')
-  // process.exit()
+  // recordData.forEach(record => { 
+  //   return Record.create(record)
+  //   .then(() => {
+  //     console.log('recordData is done')
+  //     db.close()
+  //   })
+  // })
+  Record.insertMany(recordData)
+    .then(() => db.close())
+    console.log("insert recordSeeder done.");
 })
