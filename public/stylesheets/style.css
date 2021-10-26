@@ -27,3 +27,7 @@ body {
   box-shadow: 3px 3px 10px rgb(7, 6, 6,0.7);
   border-radius: 30px;
 }
+
+.loginPage {
+  border: 1px solid red;
+}

@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
-const Record = require("../../models/record");
-const Category = require("../../models/category");
-const { getTotalAmount, getFilterRecords } = require("../../tools/dataTool");
+const express = require('express')
+const router = express.Router()
+const Record = require('../../models/record')
+const Category = require('../../models/category')
+const { getTotalAmount, getFilterRecords } = require('../../tools/dataTool')
 
 router.get('/', (req, res) => {
   const options = req.query
@@ -12,17 +12,17 @@ router.get('/', (req, res) => {
       Record.find()
         .lean()
         .then((records) => {
-          const filterResults = getFilterRecords(records, options);
-          const totalAmount = getTotalAmount(filterResults);
-          res.render("index", {
+          const filterResults = getFilterRecords(records, options)
+          const totalAmount = getTotalAmount(filterResults)
+          res.render('index', {
             options,
             categories,
             records: filterResults,
-            totalAmount,
-          });
+            totalAmount
+          })
         })
         .catch((error) => console.log(error))
     })
 })
 
-module.exports = router;
+module.exports = router

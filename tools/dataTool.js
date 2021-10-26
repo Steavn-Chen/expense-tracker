@@ -1,8 +1,8 @@
-function getCategoryIcon(categories, category) {
+function getCategoryIcon (categories, category) {
   return categories.find(item => item.category === category).categoryIcon
 }
 
-function getTotalAmount(records) {
+function getTotalAmount (records) {
   let total = 0
   records.forEach(item => {
     total += item.amount
@@ -10,12 +10,12 @@ function getTotalAmount(records) {
   return total
 }
 
-function getFilterRecords(records, options) {
+function getFilterRecords (records, options) {
   let filterResult = records.filter(
     (record) => record.category === options.filterCategory
   )
-  if (!filterResult.length) filterResult = records;
-    return filterResult;
+  if (!filterResult.length) filterResult = records
+    return filterResult
 }
 
-module.exports = { getCategoryIcon, getTotalAmount, getFilterRecords };
+module.exports = { getCategoryIcon, getTotalAmount, getFilterRecords }

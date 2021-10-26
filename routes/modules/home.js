@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
           const totalAmount = getTotalAmount(records)
           res.render('index', { records, categories, totalAmount })
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     })
 })
 
