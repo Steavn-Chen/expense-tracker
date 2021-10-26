@@ -4,6 +4,7 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
+const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
@@ -23,6 +24,7 @@ app.use(session({
   saveUninitialized: true
 }))
 
+usePassport(app)
 app.use(routes)
 
 app.listen(PORT, () => {

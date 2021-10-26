@@ -10,7 +10,9 @@
     "express-session": "^1.17.2",
     "handlebars-helpers": "^0.10.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.12.15"
+    "mongoose": "^5.12.15",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "standard": "^16.0.4"
