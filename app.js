@@ -6,22 +6,11 @@ const Category = require('./models/category')
 const methodOverride = require('method-override')
 const routes = require('./routes/index')
 require('./config/mongoose')
-// const hbsHelpers = require('handlebars-helpers')
 
 const app = express()
 const PORT = process.env.PORT || 3000; 
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: require('./tools/hbs-helpers') })
   );
-// app.engine('hbs', exphbs({ defaultLayout: "main", extname: "hbs", helpers: hbsHelpers() }));
-// app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: {
-//  ifEq: function(a, b, options) {
-//     if (a === b) { 
-//       return options.fn(this)
-//     } else {
-//       return options.inverse(this)
-//     }
-//   }}
-// }))
 
 app.set('view engine', 'hbs')
 
