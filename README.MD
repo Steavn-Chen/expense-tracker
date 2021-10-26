@@ -2,7 +2,7 @@
 
 使用 Node.js Express 打造老爹每天支出細項，這個項目主要可以使用類別選項來看各類支出總金額。
 
-![restaurant-image](https://github.com/Steavn-Chen/AC_Restaurant/blob/main/%E9%A4%90%E5%BB%B3%E6%B8%85%E5%96%AEA1.PNG)
+![restaurant-image](https://github.com/Steavn-Chen/AC_Expense-Teacker/blob/main/%E6%93%B7%E5%8F%96.PNG)
 
 ## 功能表單
 
