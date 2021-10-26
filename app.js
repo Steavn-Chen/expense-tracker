@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Record = require('./models/record')
 const Category = require('./models/category')
+const methodOverride = require('method-override')
 // const hbsHelpers = require('handlebars-helpers')
 const {
   getCategoryIcon,
@@ -25,7 +26,7 @@ db.once('open', () => {
 
 const app = express()
 const port = 3000 
-  app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: require('./tools/hbs-helpers') })
+app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: require('./tools/hbs-helpers') })
   );
 // app.engine('hbs', exphbs({ defaultLayout: "main", extname: "hbs", helpers: hbsHelpers() }));
 // app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: {
@@ -42,7 +43,7 @@ app.set('view engine', 'hbs')
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
-
+app.use(methodOverride('_method'))
 
 
 app.get('/filter', (req, res) => {
@@ -119,7 +120,7 @@ app.get('/records/:record_id/edit', (req, res) => {
         )
 })
 
-app.post('/records/:record_id/edit', (req, res) => {
+app.put('/records/:record_id', (req, res) => {
   const _id = req.params.record_id;
   const category = req.body.category;
   const body = req.body;
@@ -136,7 +137,7 @@ app.post('/records/:record_id/edit', (req, res) => {
     })
 })
 
-app.post('/records/:record_id/delete', (req, res) => {
+app.delete('/records/:record_id', (req, res) => {
   const _id = req.params.record_id
   Record.findById(_id)
   .then(record => {
