@@ -9,17 +9,17 @@ router.get('/', (req, res) => {
   const options = req.query
   return Category.find()
     .lean()
-    .then(categories => { 
+    .then(categories => {
       Record.find({ userId })
         .lean()
-        .then(records => { 
-          const filterResults = getFilterRecords(records, options, categories);
+        .then((records) => {
+          const filterResults = getFilterRecords(records, options, categories)
           const totalAmount = getTotalAmount(filterResults)
           res.render('index', {
             options,
             categories,
             records: filterResults,
-            totalAmount
+            totalAmount,
           })
         })
         .catch((error) => console.log(error))

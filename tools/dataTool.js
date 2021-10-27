@@ -2,6 +2,10 @@ function getCategoryIcon (categories, category) {
   return categories.find(item => item.category === category).categoryIcon
 }
 
+function getCategoryId (categories, category) {
+  return categories.find((item) => item.category === category)._id
+}
+
 function getTotalAmount (records) {
   let total = 0
   records.forEach(item => {
@@ -25,4 +29,9 @@ function getFilterRecords(records, options, categories) {
   return filterResult
 }
 
-module.exports = { getCategoryIcon, getTotalAmount, getFilterRecords }
+module.exports = {
+  getCategoryIcon,
+  getTotalAmount,
+  getFilterRecords,
+  getCategoryId,
+};
