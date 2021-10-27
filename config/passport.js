@@ -6,14 +6,15 @@ module.exports = app => {
   app.use(passport.initialize())
   app.use(passport.session())
 
-  passport.use(new LocalStrategy({ usernameField: 'email' }, (email, password, done) =>{
+  passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) =>{
      User.findOne({ email })
      .then(user => {
        if (!user) {
-         return done(null, false, { message: '此帳號還沒註冊。'})
+         return done(null, false, req.flash('checkLogin_msg', '使用者不存在，請註冊。'))
        }
        if (user.password !== password) {
-         return done(null, false, { message: '密碼或者電子郵件有錯誤 !'})
+         return done(null, false, req.flash('checkLogin_msg', '輸入的密碼錯誤，請重新輸入 !')
+         )
        }
        return done(null, user)
      })
