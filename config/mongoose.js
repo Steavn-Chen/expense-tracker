@@ -3,6 +3,7 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/expense-trac
   mongoose.connect(MONGODB_URI, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
+    useCreateIndex: true
   });
 
 const db = mongoose.connection;

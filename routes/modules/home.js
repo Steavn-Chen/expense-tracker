@@ -5,7 +5,8 @@ const Category = require('../../models/category')
 const { getTotalAmount } = require('../../tools/dataTool')
 
 router.get('/', (req, res) => {
-  return Record.find()
+  const userId = req.user._id
+  return Record.find({ userId })
     .lean()
     .then(records => {
       Category.find()

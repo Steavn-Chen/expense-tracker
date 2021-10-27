@@ -14,6 +14,7 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
   const { name, date, category, amount, merchant } = req.body
+  const userId = req.user._id
   return Category.find()
     .lean()
     .then(categories => {
@@ -24,18 +25,20 @@ router.post('/new', (req, res) => {
         amount,
         merchant,
         categoryIcon: getCategoryIcon(categories, category),
+        userId
       })
-        .then(() => res.redirect('/'))
-        .catch((err) => console.log(err))
-    })
+        .then(() => res.redirect("/"))
+        .catch((err) => console.log(err));
+    });
 })
 
 router.get('/:record_id/edit', (req, res) => {
   const _id = req.params.record_id;
+  const userId = req.user._id
   return Category.find()
     .lean()
-    .then((categories) =>
-      Record.findById(_id)
+    .then(categories =>
+      Record.findOne({ _id, userId })
         .lean()
         .then((record) => {
           res.render("edit", { record, categories })
@@ -46,12 +49,13 @@ router.get('/:record_id/edit', (req, res) => {
 
 router.put("/:record_id", (req, res) => {
   const _id = req.params.record_id
+  const userId = req.user._id
   const category = req.body.category
   const body = req.body
   return Category.find()
     .lean()
-    .then((categories) => {
-      Record.findById(_id)
+    .then(categories => {
+      Record.findOne({ _id, userId })
         .then((record) => {
           const icon = { categoryIcon: getCategoryIcon(categories, category) };
           return Object.assign(record, body, icon).save();
@@ -63,8 +67,9 @@ router.put("/:record_id", (req, res) => {
 
 router.delete("/:record_id", (req, res) => {
   const _id = req.params.record_id
-  Record.findById(_id)
-    .then((record) => {
+  const userId = req.user._id
+  Record.findOne({ _id, userId })
+    .then(record => {
       return record.remove()
     })
     .then(() => res.redirect('/'))
