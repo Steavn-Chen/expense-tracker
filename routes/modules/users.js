@@ -58,20 +58,6 @@ router.post('/register', (req, res) => {
        .then(() => res.redirect('/user/login'))
        .catch(err => console.log(err)) 
    })
-    // User.findOne({ email }).then(user => { 
-    //   if (user) {
-    //     errors.push({ message: '這個電子郵件地址己被註冊。'})
-    //     return res.render('register', { name, email, password, confirmPassword, errors });
-    //   } else {
-    //     return User.create({
-    //       name,
-    //       email,
-    //       password,
-    //     })
-    //       .then(() => res.redirect('/'))
-    //       .catch((err) => console.log(err));
-    //   }
-    // })
 })
 
 router.get('/logout', (req, res) => {

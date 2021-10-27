@@ -5,14 +5,15 @@ const Category = require('../../models/category')
 const { getTotalAmount, getFilterRecords } = require('../../tools/dataTool')
 
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const options = req.query
   return Category.find()
     .lean()
-    .then((categories) => {
-      Record.find()
+    .then(categories => { 
+      Record.find({ userId })
         .lean()
-        .then((records) => {
-          const filterResults = getFilterRecords(records, options)
+        .then(records => { 
+          const filterResults = getFilterRecords(records, options, categories);
           const totalAmount = getTotalAmount(filterResults)
           res.render('index', {
             options,
