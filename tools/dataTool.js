@@ -1,3 +1,9 @@
+const moment = require('moment')
+
+function getFormatDate(record) {
+  return record.date = moment(record.date).format('YYYY-MM-DD')
+}
+
 function getCategoryIcon (categories, category) {
   return categories.find(item => item.category === category).categoryIcon
 }
@@ -15,18 +21,52 @@ function getTotalAmount (records) {
 }
 
 function getFilterRecords(records, options, categories) {
-  let filterResult = records.filter(record => {
-    if (options) {
+  
+  let filterResult = records.filter((record) => {
+    // console.log(options)
+    if (options.filterCategory) {
       if (record.category === options.filterCategory) {
-        return record
-      } else if (categories.every(item => {
-        return item.category !== options.filterCategory         
-      })) { 
-        return records
+        return record;
+      } else if (
+        categories.every((item) => {
+          return item.category !== options.filterCategory;
+        })
+      ) {
+        return records;
       }
     }
   })
-  return filterResult
+ 
+  // console.log(filterResult.length);
+  return filterResult;
+}
+// function getFilterRecords(records, options, categories) {
+//   let filterResult = records.filter(record => {
+//     if (options) {
+//       if (record.category === options.filterCategory) {
+//         return record
+//       } else if (categories.every(item => {
+//         return item.category !== options.filterCategory         
+//       })) { 
+//         return records
+//       }
+//     }
+//   })
+//   console.log(filterResult);
+//   return filterResult
+// }
+
+function getFilterYear(records) {
+    let newRecords = records.map((record) => ({
+      year: moment(record.date).format("YYYY"),
+    }));
+    newRecords = [
+      ...new Set(newRecords.map((item) => JSON.stringify(item))),
+    ].map((item) => JSON.parse(item));
+    newRecords.sort(function (a, b) {
+      return parseInt(a.Year) < parseInt(b.Year) ? 1 : -1;
+    });
+    return newRecords;
 }
 
 module.exports = {
@@ -34,4 +74,6 @@ module.exports = {
   getTotalAmount,
   getFilterRecords,
   getCategoryId,
+  getFilterYear,
+  getFormatDate
 };

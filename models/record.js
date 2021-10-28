@@ -3,40 +3,40 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
-    type: String,
+    type: Date,
     required: true
   },
   category: {
     type: String,
-    required: true
+    required: true,
   },
   amount: {
     type: Number,
-    required: true
+    required: true,
   },
   categoryIcon: {
     type: String,
-    required: true
+    required: true,
   },
   merchant: {
     type: String,
-    required: true
+    required: true,
   },
   userId: {
     type: Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     index: true,
-    required: true
+    required: true,
   },
   categoryId: {
     type: Schema.Types.ObjectId,
-    ref: 'Category',
+    ref: "Category",
     index: true,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 
 module.exports = mongoose.model('Record', recordSchema)

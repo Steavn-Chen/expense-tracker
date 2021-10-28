@@ -72,7 +72,7 @@ module.exports = app => {
       (accessToken, refreshToken, profile, done) => {
         const { name, email } = profile._json
         User.findOne({ email })
-          .then(user => { console.log(user)
+          .then(user => {
             if (user) return done(null, user)
             const randomPassword = Math.random().toString(36).slice(-10)
             bcrypt
