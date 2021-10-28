@@ -17,62 +17,109 @@ const SEED_USER = [
   // { name: "user5", email: "user5@example.com", password: "12345678" },
 ];
 
-db.once('open', () => { 
-  SEED_USER.forEach((item, index) => { 
-    return bcrypt
-      .genSalt(8)
-      .then(salt => bcrypt.hash(item.password, salt))
-      .then(hash => {
-        return User.create({
-          name: item.name,
-          email: item.email,
-          password: hash
-        })
-      })
-      .then(user => {
-        // 簡寫 成功1.
-        // const userId = { userId: user._id }
-        //  let data = recordData.map((data) => Object.assign(data, userId))
-        //    .slice(index * 5, index * 5 + 5)
-        //    return Record.insertMany(data);
-        // 己成功1.
-        // const userId = { userId: user._id }
-        // let data = recordData.map(data => Object.assign(data, userId))
-        // let start = index * 5;
-        // let end = index * 5 + 5;
-        // console.log(data.length, start, end)
-        // let newData = data.slice(start, end)
-        // console.log(newData, index);
+// db.once('open', () => { 
+//   SEED_USER.forEach((item, index) => { 
+//     return bcrypt
+//       .genSalt(8)
+//       .then(salt => bcrypt.hash(item.password, salt))
+//       .then(hash => {
+//         return User.create({
+//           name: item.name,
+//           email: item.email,
+//           password: hash
+//         })
+//       })
+//       .then(user => {
+//         // 簡寫 成功1.
+//         // const userId = { userId: user._id }
+//         //  let data = recordData.map((data) => Object.assign(data, userId))
+//         //    .slice(index * 5, index * 5 + 5)
+//         //    return Record.insertMany(data);
+//         // 己成功1.
+//         // const userId = { userId: user._id }
+//         // let data = recordData.map(data => Object.assign(data, userId))
+//         // let start = index * 5;
+//         // let end = index * 5 + 5;
+//         // console.log(data.length, start, end)
+//         // let newData = data.slice(start, end)
+//         // console.log(newData, index);
 
-        // 第二種 for of 寫法
-        // const userId = user._id
-        // for (let record of recordData) {
-        //   record.userId = userId
-        // }
-        // return Record.insertMany(recordData.slice(index * 5, index * 5 + 5));
-        // return insertMany(newData)
+//         // 第二種 for of 寫法
+//         // const userId = user._id
+//         // for (let record of recordData) {
+//         //   record.userId = userId
+//         // }
+//         // return Record.insertMany(recordData.slice(index * 5, index * 5 + 5));
+//         // return insertMany(newData)
    
-        //第三種 for 迴圈寫法 
-        const userId = user._id;
-        for (let i = 0; i < recordData.length; i++) {
-          Object.assign(recordData[i], { userId:userId })
-        }
-        return Record.insertMany(recordData.slice(index * 5, index * 5 + 5));
+//         //第三種 for 迴圈寫法 
 
-        //  Array.form 創建資料多的話會失敗
-        // const userId = user._id
-        // return Promise.all(
-        //   Array.from({ length: 5 }, (_, i) =>
-        //     Record.create({ ...recordData[index * 5 + i], userId })
-        //   )
-        // );
+
+//         const userId = user._id
+//         for (let i = 0; i < recordData.length; i++) {
+//           Object.assign(recordData[i], { userId: userId })
+//         }
+//         return Record.insertMany(recordData.slice(index * 5, index * 5 + 5));
+
+//         //  Array.form 創建資料多的話會失敗
+//         // const userId = user._id
+//         // return Promise.all(
+//         //   Array.from({ length: 5 }, (_, i) =>
+//         //     Record.create({ ...recordData[index * 5 + i], userId })
+//         //   )
+//         // );
+//       })
+
+//       .then(() => {
+//         db.close()
+//         console.log('insert recordSeeder done.');
+//       })
+//       .catch(err => console.log(err))
+//   })
+
+// })
+
+
+db.once('open', () => { 
+  return Category.find()
+    .lean()
+    .then(categories => {
+      SEED_USER.forEach((item, index) => { 
+        return bcrypt
+          .genSalt(8)
+          .then((salt) => bcrypt.hash(item.password, salt))
+          .then((hash) => {
+            return User.create({
+              name: item.name,
+              email: item.email,
+              password: hash,
+            });
+          })
+          .then((user) => {
+            const userId = user._id;
+            for (let i = 0; i < recordData.length; i++) {
+              const categoryId = categories.find(
+                (item) => item.category === recordData[i].category
+              )._id;
+              const categoryIcon = categories.find(
+                (item) => item.category === recordData[i].category
+              ).categoryIcon;
+              Object.assign(recordData[i], {
+                userId,
+                categoryId,
+                categoryIcon,
+              });
+            }
+            return Record.insertMany(
+              recordData.slice(index * 5, index * 5 + 5)
+            );
+          })
+          .then(() => {
+            // db.close()
+            console.log("insert recordSeeder done.");
+            process.exit();
+          })
+          .catch((err) => console.log(err));
       })
-
-      .then(() => {
-        db.close()
-        console.log('insert recordSeeder done.');
-      })
-      .catch(err => console.log(err))
-  })
-
+    })
 })
