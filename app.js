@@ -15,8 +15,7 @@ require('./config/mongoose')
 const app = express()
 const PORT = process.env.PORT  
 
-app.engine("hbs", exphbs({ defaultLayout: "main", extname: "hbs", helpers: require('./tools/hbs-helpers') })
-  );
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: 'hbs', helpers: require('./tools/hbs-helpers') }))
 
 app.set('view engine', 'hbs')
 
@@ -27,9 +26,9 @@ app.use(
   session({
     secret: process.env.SECRET_SESSION,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: true
   })
-);
+)
 
 userPassport(app)
 app.use(flash())
@@ -47,4 +46,4 @@ app.use(routes)
 
 app.listen(PORT, () => {
   console.log(`Expense-Tracker web on http://localhost:${PORT}`);
-});
+})

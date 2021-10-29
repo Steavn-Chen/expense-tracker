@@ -1,22 +1,24 @@
 <div class="container mt-5">
   <div class="btn-toolbar justify-content-center" role="toolbar" aria-label="Toolbar with button groups">
     <form action="/filter" method="GET">
-      <div class="filterYear btn-group mx-5" role="group" aria-label="First group" >
+    {{!-- 追加 年 月 按紐未完成的 CODE --}}
+      {{!-- <div class="filterYear btn-group mx-5" role="group" aria-label="First group" >
         <select class="custom-select custom-select-lg  mb-3" oninput="submit()" name="filterYear" id="selectYear">
-          <option selected="">所有年份</option>
+          <option value="allYear" selected>所有年份</option>
           {{#each yearList}}
           <option value="{{ this.year }}" {{#ifEq this.year ../options.filterYear}} selected {{/ifEq}}>{{ this.year }} 年</option>
           {{/each}}
         </select>
-      </div>
-      <div class="filterMonth btn-group mx-5" role="group" aria-label="Second group">
+      </div> --}}
+      {{!-- <div class="filterMonth btn-group mx-5" role="group" aria-label="Second group">
         <select class="custom-select custom-select-lg  mb-3" oninput="submit()" name="filterMonth" id="selectMonth">
           <option selected="">所有月份</option>
           {{#each monthList}}
           <option value="{{ this.monthValue }}" {{#ifEq this.monthValue ../options.filterMonth }} selected {{/ifEq}}>{{ this.monthName }}</option>
           {{/each}}
         </select>
-      </div>
+      </div> --}}
+      
       <div class="filterCategory btn-group mx-5" role="group" aria-label="Three group">
         <select class="custom-select custom-select-lg btn-secondary mb-3" oninput="submit()" name='filterCategory'>
           <option selected>全部類別</option>

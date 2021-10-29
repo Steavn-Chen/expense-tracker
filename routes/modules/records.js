@@ -1,14 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const Record = require("../../models/record");
-const Category = require("../../models/category");
+const express = require('express')
+const router = express.Router()
+const Record = require('../../models/record')
+const Category = require('../../models/category')
+const { getFormatDate } = require('../../tools/dataTool')
 
 router.get('/new', (req, res) => {
   return Category.find()
     .lean()
-    .then((categories) => res.render("new", { categories }))
+    .then((categories) => res.render('new', { categories }))
     .catch((err) => console.log(err))
-});
+})
 
 router.post('/new', (req, res) => {
   const { name, date, category, amount, merchant } = req.body
@@ -16,7 +17,6 @@ router.post('/new', (req, res) => {
   return Category.findOne({ category })
     .lean()
     .then((categoryData) => {
-      console.log(category);
       return Record.create({
         name,
         date,
@@ -25,15 +25,15 @@ router.post('/new', (req, res) => {
         merchant,
         categoryIcon: categoryData.categoryIcon,
         categoryId: categoryData._id,
-        userId,
+        userId
       })
-        .then(() => res.redirect("/"))
-        .catch((err) => console.log(err));
-    });
+        .then(() => res.redirect('/'))
+        .catch((err) => console.log(err))
+    })
 })
 
 router.get('/:record_id/edit', (req, res) => {
-  const _id = req.params.record_id;
+  const _id = req.params.record_id
   const userId = req.user._id
   return Category.find()
     .lean()
@@ -41,6 +41,7 @@ router.get('/:record_id/edit', (req, res) => {
       Record.findOne({ _id, userId })
         .lean()
         .then((record) => {
+          getFormatDate(record)
           res.render('edit', { record, categories })
         })
         .catch((err) => console.log(err))
@@ -55,19 +56,19 @@ router.put('/:record_id', (req, res) => {
   return Category.findOne({ category })
     .lean()
     .then(categoryData => {
-      console.log(categoryData);
+      console.log(categoryData)
       Record.findOne({ _id, userId })
         .then((record) => {
-          const icon = { categoryIcon: categoryData.categoryIcon };
-          console.log(icon);
-          return Object.assign(record, body, icon).save();
+          const icon = { categoryIcon: categoryData.categoryIcon }
+          console.log(icon)
+          return Object.assign(record, body, icon).save()
         })
         .then(() => res.redirect('/'))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     })
 })
 
-router.delete("/:record_id", (req, res) => {
+router.delete('/:record_id', (req, res) => {
   const _id = req.params.record_id
   const userId = req.user._id
   Record.findOne({ _id, userId })

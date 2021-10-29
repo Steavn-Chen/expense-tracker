@@ -3,7 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const monthList = require('../../models/seeds/month.json')
-const { getTotalAmount, getFilterYear, getFormatDate } = require("../../tools/dataTool");
+const { getTotalAmount, getFilterYear, getFormatDate } = require('../../tools/dataTool')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
@@ -16,13 +16,13 @@ router.get('/', (req, res) => {
           const yearList = getFilterYear(records)
           const totalAmount = getTotalAmount(records)
           records.forEach((record) => getFormatDate(record))
-          res.render("index", {
+          res.render('index', {
             records,
             categories,
             totalAmount,
             monthList,
-            yearList,
-          });
+            yearList
+          })
         })
         .catch((err) => console.log(err))
     })

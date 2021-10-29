@@ -22,42 +22,42 @@ router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
   if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '每個欄位都是必填的。'})
+    errors.push({ message: '每個欄位都是必填的。' })
   }
   if (password !== confirmPassword) {
-    errors.push({ message: '密碼與確認密碼不同喔 !'})
+    errors.push({ message: '密碼與確認密碼不同喔 !' })
   }
   if (errors.length) {
-    return res.render('register', {
-    name, 
-    email, 
-    password, 
-    confirmPassword,
-    errors
-    })
+  return res.render('register', {
+  name,
+  email,
+  password,
+  confirmPassword,
+  errors
+  })
   }
-   User.findOne({ email }).then((user) => {
-     if (user) {
-       errors.push({ message: "這個電子郵件地址己被註冊。" });
-       return res.render("register", {
-         name,
-         email,
-         password,
-         confirmPassword,
-         errors,
-      })
-     } 
-     return bcrypt
-       .genSalt(10)
-       .then(salt => bcrypt.hash(password, salt))
-       .then(hash => User.create({
-         name,
-         email,
-         password: hash
-       }))
-       .then(() => res.redirect('/user/login'))
-       .catch(err => console.log(err)) 
-   })
+  User.findOne({ email }).then((user) => {
+    if (user) {
+      errors.push({ message: '這個電子郵件地址己被註冊。' })
+      return res.render('register', {
+        name,
+        email,
+        password,
+        confirmPassword,
+        errors
+  })
+    }
+    return bcrypt
+      .genSalt(10)
+      .then(salt => bcrypt.hash(password, salt))
+      .then(hash => User.create({
+        name,
+        email,
+        password: hash
+      }))
+      .then(() => res.redirect('/user/login'))
+      .catch(err => console.log(err))
+  })
 })
 
 router.get('/logout', (req, res) => {

@@ -5,56 +5,68 @@ const Category = require('../../models/category')
 const monthList = require('../../models/seeds/month.json')
 const {
   getTotalAmount,
-  getFilterRecords,
   getFilterYear,
-  getFormatDate,
-} = require("../../tools/dataTool");
+  getFormatDate
+} = require('../../tools/dataTool')
 
 router.get('/', (req, res) => {
   const userId = req.user._id
   const options = req.query
-  // console.log(options)
   let filterCondition = { userId }
-  console.log(filterCondition);
-  //  if (options.filterMonth) {
-  //    filterCondition = {
-  //      ...filterCondition,
-  //      date: {
-  //        $gte: startDate.toISOString().split("T")[0],
-  //        $lt: endDate.toISOString().split("T")[0],
-  //      },
-  //    };
-  //  }
-   console.log(filterCondition);
+
+  //  追加 年 月 按紐未完成的 CODE
+  // let startYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear() - 100 : `${options.filterYear}`;
+  // let endYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear(): `${options.filterYear}`;
+  // let startMonth =
+  //   `${options.filterMonth}` === "allMonths" ? "01" : `${options.filterMonth}`;
+  // let endMonth =
+  //   `${options.filterMonth}` === "allMonths" ? "12" : `${options.filterMonth}`;
+  // let day = new Date(`${endYear}`, `${endMonth}`, 0).getDate();
+  // console.log(options, day, startYear, endYear, startMonth, endMonth);
+
+  // let startDate = `${startYear}-${startMonth}-01T00:00:00.000Z`.toString();
+  // let endDate = `${endYear}-${endMonth}-${day}T00:00:00.000Z`.toString();
+
+  // console.log(startDate, endDate, typeof startDate);
+
+  // if (options.filterMonth !== "allMonths") {
+  //   filterCondition = {
+  //     ...filterCondition,
+  //     date: {
+  //       $gte: moment(startDate).format("YYYY-MM-DD"),
+  //       $lt: moment(endDate).format("YYYY-MM-DD"),
+  //     },
+  //   };
+  // }
+
   if (options.filterCategory) {
-    filterCondition = { ...filterCondition, category:options.filterCategory };
+    if (options.filterCategory !== '全部類別') {
+      filterCondition = {
+        ...filterCondition,
+        category: options.filterCategory
+      }
+    }
   }
-  console.log(filterCondition);
+
   return Category.find()
     .lean()
-    .then(categories => {
+    .then((categories) => {
       Record.find(filterCondition)
-        // Record.find({ userId })
         .lean()
         .then((records) => {
-          // const filterResults = getFilterRecords(records, options, categories);
-          console.log(records,'front')
-           records.forEach((record) => getFormatDate(record));
-          console.log(records, "back")
-          const yearList = getFilterYear(records);
-          // const totalAmount = getTotalAmount(filterResults);
-          const totalAmount = getTotalAmount(records);
-          res.render("index", {
+          records.forEach((record) => getFormatDate(record))
+          const yearList = getFilterYear(records)
+          const totalAmount = getTotalAmount(records)
+          res.render('index', {
             options,
             categories,
             records,
-            // records: filterResults,
             totalAmount,
             monthList,
-            yearList,
-          });
+            yearList
+          })
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
     })
 })
 
