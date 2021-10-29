@@ -30,7 +30,7 @@ module.exports = app => {
     })
       .catch((err) => done(err, null));
   }))
-}
+
   passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_ID,
         clientSecret: process.env.FACEBOOK_SECRET,
@@ -93,3 +93,6 @@ module.exports = app => {
       .then(user => done(null, user))
       .catch(err => done(err, null))
   })
+}
+
+  
