@@ -7,9 +7,9 @@
 
 # 測試帳號
 
-name: user1, email: user1@example.com, password: 12345678 
-name: user2, email: user2@example.com, password: 12345678
-name: user3, email: user3@example.com, password: 12345678
+-name: user1, email: user1@example.com, password: 12345678 
+-name: user2, email: user2@example.com, password: 12345678
+-name: user3, email: user3@example.com, password: 12345678
 
 ## 功能表單
 
