@@ -27,7 +27,9 @@ router.post('/new', (req, res) => {
         categoryId: categoryData._id,
         userId
       })
-        .then(() => res.redirect('/'))
+        .then(() => {
+          req.flash('newSuccess_msg', '您己新增一筆支出記錄。')
+          res.redirect('/')})
         .catch((err) => console.log(err))
     })
 })
@@ -56,14 +58,17 @@ router.put('/:record_id', (req, res) => {
   return Category.findOne({ category })
     .lean()
     .then(categoryData => {
-      console.log(categoryData)
+
       Record.findOne({ _id, userId })
         .then((record) => {
           const icon = { categoryIcon: categoryData.categoryIcon }
           console.log(icon)
           return Object.assign(record, body, icon).save()
         })
-        .then(() => res.redirect('/'))
+        .then(() => {
+          req.flash('editSuccess_msg', '你己重新編輯支出記錄')
+          res.redirect(`/records/${_id}/edit`)
+      })
         .catch((err) => console.log(err))
     })
 })

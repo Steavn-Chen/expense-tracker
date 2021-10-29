@@ -4,6 +4,12 @@
 
 ![restaurant-image](https://github.com/Steavn-Chen/AC_Expense-Teacker/blob/main/%E6%93%B7%E5%8F%96.PNG)
 
+# 測試帳號
+
+name: user1, email: user1@example.com, password: 12345678 
+name: user2, email: user2@example.com, password: 12345678
+name: user3, email: user3@example.com, password: 12345678
+
 ## 功能表單
 
 ## <1.0 版>
@@ -18,37 +24,46 @@
 
 - 將專案 clone 到本地端
 
-https://github.com/Steavn-Chen/test_retaurant
+https://github.com/Steavn-Chen/AC_Expense-Teacker
 
 - 進入到專案資料夾
-
+```
 - 安裝 npm
-
+```
   npm install
-
+```
 - 啓動專案
-
-npm run dev
-
+```
+  npm run dev
+```
 - 若終端機出顥示出以下字串，表示成功。
-
-Expense-Tracker web on http://localhost:3000
-
-出現 mongodb is connected! ，代表 mongodb 資料庫連接成功
+```
+  Expense-Tracker web on http://localhost:3000
+```
+  出現 mongodb is connected! ，代表 mongodb 資料庫連接成功
 
 - 在終端機輸入 npm run seed
-  看到 mongodb is connected! done! 種子資料建立成功
-
+```
+  看到 insert recordSeeder done! 種子資料建立成功
+```
   ## 開發環境
 
 - Node.js -v10.15.0
 - Express -4.17.1
-- Express-Handlebars-5.3.3
-- mongoose 5.12.9
+- Express-Handlebars-5.3.4
+- mongoose 5.12.15
 
 ## 使用的套件
 
 - express-handlebars
 - method-override
 - nodemon
--
+- bcryptjs
+- connect-flash
+- dotenv
+- moment
+- passport
+- passport-local
+- passport-facebook
+- passport-google-oauth20
+- express-session

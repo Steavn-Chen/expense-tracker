@@ -8,6 +8,7 @@
         <div class="col-6 d-flex justify-content-center text-nowrap">
           <div class="newTitle">
             <h4>請修改你的支出</h4>
+            {{> message}}
           </div>
         </div>
       </div>
@@ -93,14 +94,15 @@
       <div class="form-inline newBtn d-flex justify-content-center mt-4">
         <button
           type="submit"
-          class="btn btn-primary btn-lg mr-3"
-          style="width: 120px"
+          class="btn btn-primary btn-lg ml-3"
+          style="width: 100px"
         >送出</button>
         <button
           type="reset"
-          class="btn btn-danger btn-lg ml-3"
-          style="width: 120px"
+          class="btn btn-danger btn-lg mx-3"
+          style="width: 100px"
         >重設</button>
+        <a href="/" class="btn btn-success mr-3" style="width: 100px;height: 48px;line-height: 32px;font-size:22px">返回</a>
       </div>
     </div>
   </form>
