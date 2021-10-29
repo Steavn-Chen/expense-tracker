@@ -62,7 +62,6 @@ router.put('/:record_id', (req, res) => {
       Record.findOne({ _id, userId })
         .then((record) => {
           const icon = { categoryIcon: categoryData.categoryIcon }
-          console.log(icon)
           return Object.assign(record, body, icon).save()
         })
         .then(() => {
