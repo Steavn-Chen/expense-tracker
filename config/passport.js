@@ -54,7 +54,7 @@ module.exports = app => {
                 password: hash
               })
             )
-            .then(() => done(null, user))
+            .then(user => done(null, user))
             .catch((err) => done(err, false))
         })
       }
