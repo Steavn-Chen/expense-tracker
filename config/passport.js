@@ -30,7 +30,7 @@ module.exports = app => {
     })
       .catch((err) => done(err, null));
   }))
-  
+}
   passport.use(new FacebookStrategy({
         clientID: process.env.FACEBOOK_ID,
         clientSecret: process.env.FACEBOOK_SECRET,
@@ -58,15 +58,12 @@ module.exports = app => {
     )
   )
 
-  passport.use(
-    new GoogleStrategy(
-      {
+  passport.use(new GoogleStrategy({
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: process.env.GOOGLE_CALLBACK,
         profileFields: ["email", "displayName"],
-      },
-      (accessToken, refreshToken, profile, done) => {
+      }, (accessToken, refreshToken, profile, done) => {
         const { name, email } = profile._json
         User.findOne({ email })
           .then(user => {
@@ -79,14 +76,12 @@ module.exports = app => {
                   name,
                   email,
                   password: hash
-                })
-              )
+                }))
               .then(user => done(null, user))
               .catch(err => done(err, false))
           })
       }
-    )
-  )
+  ))
 
   passport.serializeUser((user, done) => {
      done(null, user.id)
@@ -98,4 +93,3 @@ module.exports = app => {
       .then(user => done(null, user))
       .catch(err => done(err, null))
   })
-}
