@@ -47,5 +47,5 @@ app.use((req, res, next) => {
 app.use(routes)
 
 app.listen(PORT, () => {
-  console.log(`Expense-Tracker web on http://localhost:${PORT}`);
+  console.log(`Expense-Tracker web on http://localhost:${PORT}`)
 })
