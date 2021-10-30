@@ -2,13 +2,15 @@
 
 使用 Node.js Express 打造老爹每天支出細項，這個項目主要可以使用類別選項來看各類支出總金額。
 
-![restaurant-image](https://github.com/Steavn-Chen/AC_Expense-Teacker/blob/main/%E6%93%B7%E5%8F%96.PNG)
+![restaurant-image](https://github.com/Steavn-Chen/AC_Expense-Teacker/blob/main/public/image/%E8%A8%BB%E5%86%8A%E9%A0%81.PNG)
+![restaurant-image](https://github.com/Steavn-Chen/AC_Expense-Teacker/blob/main/public/image/%E9%A0%81%E9%A6%96.PNG)
 
 # 測試帳號
-
-name: user1, email: user1@example.com, password: 12345678 
-name: user2, email: user2@example.com, password: 12345678
-name: user3, email: user3@example.com, password: 12345678
+```
+ name: user1, email: user1@example.com, password: 12345678 
+ name: user2, email: user2@example.com, password: 12345678
+ name: user3, email: user3@example.com, password: 12345678
+```
 
 ## 功能表單
 
