@@ -1,0 +1,28 @@
+From ea88bdffc4b4a74aba08add679ff430bb54d0822 Mon Sep 17 00:00:00 2001
+From: Steavn Chen <tom9876555@yahoo.com.tw>
+Date: Sat, 30 Oct 2021 03:12:55 +0800
+Subject: [PATCH] =?UTF-8?q?=E6=B8=AC=E8=A9=A6heroku=E7=99=BB=E5=85=A5FB-2?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ routes/modules/auth.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/routes/modules/auth.js b/routes/modules/auth.js
+index b1ca911..ed0370c 100644
+--- a/routes/modules/auth.js
++++ b/routes/modules/auth.js
+@@ -6,7 +6,7 @@ router.get('/facebook', passport.authenticate('facebook', {
+   scope: ['email', 'public_profile']
+ }))
+ 
+-router.get('/facebook/callbacks', passport.authenticate('facebook', {
++router.get('/facebook/callback', passport.authenticate('facebook', {
+   successRedirect: '/',
+   failureRedirect: '/users/login'
+ }))
+-- 
+2.32.0.windows.1
+

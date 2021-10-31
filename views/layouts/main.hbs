@@ -17,15 +17,21 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between">
       <a class="navbar-brand" href="/">{{#if isAuthenticated }} {{ user.name }}`的記帳本 {{else}}老爹的記帳本{{/if}}</a>
-    {{#if isAuthenticated}}
-      <a href="/users/logout" class="btn btn-secondary d-flex justify-content-end">登出</a>
-      {{else}}
-       <a href="/users/login" class="btn btn-secondary d-flex justify-content-end">登入</a>
-    {{/if}}
+      <div class="nav-right">
+        <form class="form-inline mx-auto" action="/search" method="POST">
+          <input class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search" name="keyword">
+          <button class="btn btn-outline-dark my-2 my-sm-0 mr-3" type="submit">Search</button>
+          {{#if isAuthenticated}}
+          <a href="/users/logout" class="btn btn-secondary d-flex justify-content-end">登出</a>
+          {{else}}
+          <a href="/users/login" class="btn btn-secondary d-flex justify-content-end">登入</a>
+          {{/if}}
+        </form>
+      </div>
     </nav>
   </header>
- 
-    {{{ body }}}
+
+  {{{ body }}}
 
   <script src="/javascripts/popper.js"></script>
   <script src="/javascripts/jquery-3.6.0.min.js"></script>
