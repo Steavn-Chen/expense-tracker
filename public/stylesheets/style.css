@@ -124,3 +124,9 @@ body {
   background-color: rgb(167, 136, 250);
   color:cornsilk;
 }
+
+.showOutPage {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -41,6 +41,7 @@ app.use((req, res, next) => {
   res.locals.checkLogin_msg = req.flash('checkLogin_msg')
   res.locals.editSuccess_msg = req.flash('editSuccess_msg')
   res.locals.newSuccess_msg = req.flash('newSuccess_msg')
+  res.locals.searchNull_msg = req.flash('searchNull_msg')
   next()
 })
 

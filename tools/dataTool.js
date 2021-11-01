@@ -25,8 +25,7 @@ function getFilterRecords (records, options, categories) {
     if (options.filterCategory) {
       if (record.category === options.filterCategory) {
         return record
-      } 
-      else if (categories.every((item) => { return item.category !== options.filterCategory})) {
+      } else if (categories.every((item) => item.category !== options.filterCategory )) {
         return records
       }
     }

@@ -6,11 +6,11 @@
      <form action="/users/login" method="POST">
        <div class="form-group mt-2">
          <label for="email" style="font-size: 25px;"><i class="far fa-envelope "></i>  Email : </label>
-         <input type="email" name="email" id="email" placeholder="請輸入你的信箱地址" class="form-control">
+         <input type="email" name="email" id="email" placeholder="請輸入你的信箱地址" class="form-control" maxlength="30">
        </div>
        <div class="form-group">
          <label for="password" style="font-size: 25px;"><i class="fas fa-key"></i>  Password :</label>
-         <input type="password" name="password" id="password" placeholder="請輸入你的密碼" class="form-control">
+         <input type="password" name="password" id="password" placeholder="請輸入你的密碼" class="form-control" maxlength="20">
        </div>
        <div class="form-inline d-flex justify-content-center mt-4">
        <button type="submit" class="btn btn-primary mx-2" id="loginSubmitBtn">登入</button>

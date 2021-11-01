@@ -29,7 +29,7 @@ router.post('/new', (req, res) => {
       })
         .then(() => {
           req.flash('newSuccess_msg', '您己新增一筆支出記錄。')
-          res.redirect('/')})
+          res.redirect('/') })
         .catch((err) => console.log(err))
     })
 })
@@ -58,7 +58,6 @@ router.put('/:record_id', (req, res) => {
   return Category.findOne({ category })
     .lean()
     .then(categoryData => {
-
       Record.findOne({ _id, userId })
         .then((record) => {
           const icon = { categoryIcon: categoryData.categoryIcon }

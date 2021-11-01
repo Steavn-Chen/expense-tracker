@@ -3,6 +3,7 @@ const router = express.Router()
 const Record = require('../../models/record')
 const Category = require('../../models/category')
 const monthList = require('../../models/seeds/month.json')
+const moment = require('moment')
 const {
   getTotalAmount,
   getFilterYear,
@@ -17,27 +18,24 @@ router.get('/', (req, res) => {
   //  追加 年 月 按紐未完成的 CODE
   // let startYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear() - 100 : `${options.filterYear}`;
   // let endYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear(): `${options.filterYear}`;
-  // let startMonth =
-  //   `${options.filterMonth}` === "allMonths" ? "01" : `${options.filterMonth}`;
-  // let endMonth =
-  //   `${options.filterMonth}` === "allMonths" ? "12" : `${options.filterMonth}`;
-  // let day = new Date(`${endYear}`, `${endMonth}`, 0).getDate();
-  // console.log(options, day, startYear, endYear, startMonth, endMonth);
 
-  // let startDate = `${startYear}-${startMonth}-01T00:00:00.000Z`.toString();
-  // let endDate = `${endYear}-${endMonth}-${day}T00:00:00.000Z`.toString();
+  const startYear = new Date().getFullYear() - 100
+  const endYear = new Date().getFullYear()
+  const startMonth = `${options.filterMonth}` === 'allMonths' ? '01' : `${options.filterMonth}`
+  const endMonth = `${options.filterMonth}` === 'allMonths' ? '12' : `${options.filterMonth}`
+  const day = new Date(`${endYear}`, `${endMonth}`, 0).getDate()
+  const startDate = `${startYear}-${startMonth}-01T00:00:00.000Z`.toString()
+  const endDate = `${endYear}-${endMonth}-${day}T00:00:00.000Z`.toString()
 
-  // console.log(startDate, endDate, typeof startDate);
-
-  // if (options.filterMonth !== "allMonths") {
-  //   filterCondition = {
-  //     ...filterCondition,
-  //     date: {
-  //       $gte: moment(startDate).format("YYYY-MM-DD"),
-  //       $lt: moment(endDate).format("YYYY-MM-DD"),
-  //     },
-  //   };
-  // }
+  if (options.filterMonth !== 'allMonths') {
+    filterCondition = {
+      ...filterCondition,
+      date: {
+        $gte: moment(startDate).format('YYYY-MM-DD'),
+        $lt: moment(endDate).format('YYYY-MM-DD')
+      }
+    }
+  }
 
   if (options.filterCategory) {
     if (options.filterCategory !== '全部類別') {
@@ -47,7 +45,6 @@ router.get('/', (req, res) => {
       }
     }
   }
-
   return Category.find()
     .lean()
     .then((categories) => {
