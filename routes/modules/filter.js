@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
   // let startYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear() - 100 : `${options.filterYear}`;
   // let endYear = `${options.filterYear}` === "allYear" ? new Date().getFullYear(): `${options.filterYear}`;
 
-  const startYear = new Date().getFullYear() - 100
+  const startYear = new Date().getFullYear() 
   const endYear = new Date().getFullYear()
   const startMonth = `${options.filterMonth}` === 'allMonths' ? '01' : `${options.filterMonth}`
   const endMonth = `${options.filterMonth}` === 'allMonths' ? '12' : `${options.filterMonth}`
@@ -45,6 +45,7 @@ router.get('/', (req, res) => {
       }
     }
   }
+  console.log(filterCondition)
   return Category.find()
     .lean()
     .then((categories) => {
